@@ -8,10 +8,18 @@
 import Foundation
 
 @propertyWrapper
-struct Injectable<T: InjectableDependency> {
-    var wrappedValue: T
+struct Injectable<T> {
+    private let keyPath: WritableKeyPath<InjectableValues, T>
+    var wrappedValue: T {
+        get {
+            InjectableValues[keyPath]
+        }
+        set {
+            InjectableValues[keyPath] = newValue
+        }
+    }
     
-    init() {
-        self.wrappedValue = Resolver.shared.resolve()
+    init(_ keyPath: WritableKeyPath<InjectableValues, T>) {
+        self.keyPath = keyPath
     }
 }
