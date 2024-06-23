@@ -9,7 +9,8 @@ import Foundation
 
 @propertyWrapper
 public struct Injectable<T> {
-    private let keyPath: WritableKeyPath<InjectableValues, T>
+    private let keyPath: KeyPath<InjectableValues, T>
+    
     public var wrappedValue: T {
         get {
             InjectableValues[keyPath]
@@ -19,7 +20,7 @@ public struct Injectable<T> {
         }
     }
     
-    public init(_ keyPath: WritableKeyPath<InjectableValues, T>) {
+    public init(_ keyPath: KeyPath<InjectableValues, T>) {
         self.keyPath = keyPath
     }
 }

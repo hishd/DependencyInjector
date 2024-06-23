@@ -11,11 +11,15 @@ public struct InjectableValues {
     
     private static var current: InjectableValues = InjectableValues()
     
-    public static subscript<T>(keyPath: WritableKeyPath<InjectableValues, T>) -> T {
+    public static subscript<T>(keyPath: KeyPath<InjectableValues, T>) -> T {
         get {
             current[keyPath: keyPath]
         } set {
-            current[keyPath: keyPath] = newValue
+            if let keyPath = keyPath as? WritableKeyPath<InjectableValues, T> {
+                current[keyPath: keyPath] = newValue
+            } else {
+                fatalError("KeyPath is not writable")
+            }
         }
     }
     
