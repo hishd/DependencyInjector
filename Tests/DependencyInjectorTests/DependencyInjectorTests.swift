@@ -19,18 +19,9 @@ struct DataLoggerDependency: InjectableDependency {
     static var dependency: Logger = DataLogger()
 }
 
-struct MockLoggerDependency: InjectableDependency {
-    static var dependency: Logger = MockLogger()
-}
-
 extension InjectableValues {
     var dataLogger: Logger {
-        get {
-            Self[DataLoggerDependency.self]
-        }
-        set {
-            Self[DataLoggerDependency.self] = newValue
-        }
+        MockLogger()
     }
     
     var mockLogger: Logger {
