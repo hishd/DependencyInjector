@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct InjectableValues {
+public struct InjectableValues {
     
     private static var current: InjectableValues = InjectableValues()
     
-    static subscript<T>(keyPath: WritableKeyPath<InjectableValues, T>) -> T {
+    public static subscript<T>(keyPath: WritableKeyPath<InjectableValues, T>) -> T {
         get {
             current[keyPath: keyPath]
         } set {
@@ -19,7 +19,7 @@ struct InjectableValues {
         }
     }
     
-    static subscript<T: InjectableDependency>(type: T.Type) -> T.Dependency {
+    public static subscript<T: InjectableDependency>(type: T.Type) -> T.Dependency {
         get {
             return type.dependency
         }

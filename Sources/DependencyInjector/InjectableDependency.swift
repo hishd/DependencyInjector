@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol InjectableDependency {
+public protocol InjectableDependency {
     associatedtype Dependency
     
     static var dependency: Dependency{get set}
