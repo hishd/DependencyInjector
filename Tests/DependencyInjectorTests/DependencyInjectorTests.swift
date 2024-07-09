@@ -26,10 +26,10 @@ extension InjectableValues {
     
     var mockLogger: Logger {
         get {
-            Self[MockLoggerDependency.self]
+            Self[DataLoggerDependency.self]
         }
         set {
-            Self[MockLoggerDependency.self] = newValue
+            Self[DataLoggerDependency.self] = newValue
         }
     }
 }
